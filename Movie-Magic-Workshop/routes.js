@@ -1,10 +1,8 @@
-const express = require('express');
+const router = require('express').Router();
 const path = require('path');
-const router = express.Router();
+const homeController = require('./controllers/homeController');
 
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'home.html'));
-});
+router.use(homeController);
 
 router.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'));
@@ -25,7 +23,5 @@ router.get('/search', (req, res) => {
 router.all('/404', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', '404.html'));
 });
-
-
 
 module.exports = router;
