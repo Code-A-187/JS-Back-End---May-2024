@@ -1,9 +1,9 @@
-const { engine } = require('express-hendlebars')
+const { engine } = require('express-handlebars')
 const path = require('path')
 
 function hbsConfig(app) {
 
-    app.engine('hbs', handlebars.engine({
+    app.engine('hbs', engine({
         extname:'hbs'
     }));
 
