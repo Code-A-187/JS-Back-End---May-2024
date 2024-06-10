@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const path = require('path');
 const homeController = require('./controllers/homeController');
+const movieController = require('./controllers/movieController')
 
 router.use(homeController);
 
-router.get('/create', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'create.html'));
-});
+router.use(movieController)
 
 router.get('/details/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'details.html'));
