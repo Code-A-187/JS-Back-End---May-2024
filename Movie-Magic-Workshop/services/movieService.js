@@ -1,4 +1,6 @@
-movies = [{genre: 'Adventure',
+movies = [{
+  _id: 1,
+  genre: 'Adventure',
   director: 'Jaume Collet-Serra',
   date: '2021',
   imageUrl: '/img/jungle-cruise.jpeg',
@@ -15,5 +17,6 @@ exports.getAll = () => {
 
 
 exports.create = (movieData) => {
+    movieData._id = movies[movies.length - 1]._id + 1;
     movies.push(movieData)
 }; 
