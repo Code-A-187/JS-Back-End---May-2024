@@ -12,9 +12,11 @@ router.get('/about', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-  const movies = movieService.getAll();
-    
-    res.render('search', { movies });
+  const { title, genre, year } = req.query;
+
+  const movieResult = movieService.search(title, genre, year);
+  
+  res.render('search', { movies: movieResult, title, genre, year });
 });
 
 router.get('/404', (req, res) => {
