@@ -12,7 +12,8 @@ const port = 3000;
 hbsConfig(app);
 
 expressConfig(app);
-
 app.use('/', routes);
+
+
 
 app.listen(port, console.log(`The app is running ${port}`));
