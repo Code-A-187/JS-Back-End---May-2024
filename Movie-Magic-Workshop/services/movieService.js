@@ -12,11 +12,11 @@ const movies = [{
 }];
 
 
-exports.getAll = () => {
-  return movies.slice();
+exports.getAll = () => Movie.find();
+
   // return [...movies];
   // return Array.form(movies);
-};
+
 
 exports.search = (title, genre, year) => {
   let result = movies.slice();
@@ -41,9 +41,4 @@ exports.getOne = (movieId) => {
   return movie;
 };
 
-
-exports.create = async (movieData) => {
-    const result = await Movie.create(movieData);
-
-    return result
-};
+exports.create =(movieData) => Movie.create(movieData);
