@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
-const castSchema = new Schema({
+const castSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -28,11 +28,11 @@ const castSchema = new Schema({
             }
 
         },
-        movie: [{type: Schema.Types.ObjectId, ref: 'Movie'}]
+        movie: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
     }
 }
 })
 
 const Cast = mongoose.model('Cast', castSchema);
 
-module.exports = Cast;
+// module.exports = Cast;

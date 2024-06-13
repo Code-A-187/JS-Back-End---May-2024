@@ -1,6 +1,6 @@
-const { Schema, default: mongoose } = require('mongoose')
+const mongoose = require('mongoose')
 
-const movieSchema = new Schema ({
+const movieSchema = new mongoose.Schema ({
     title: {
         type: String,
         required: true,
@@ -12,19 +12,19 @@ const movieSchema = new Schema ({
     year: {
         type: Number, 
         required: true, 
-        max: 2024,
+        max: 2030,
         min: 1900,
     },
     rating: {
         type: Number,
         required: true,
         max: 5,
-        min:1,
+        min: 1,
     },
     description: {
         type: String,
         required: true,
-        maxlength: 2000,
+        maxLength: 2000,
     },
     imageURL: {
         type: String,
@@ -35,11 +35,9 @@ const movieSchema = new Schema ({
             },
             message: props => `${props.value} is not a valid URL`
         },
-        cast: [{type: Schema.Types.ObjectId, ref: 'Cast'}],
+        cast: [{type: mongoose.Schema.Types.ObjectId, ref: 'Cast'}],
     }
 });
-
-
 
 const Movie = mongoose.model('Movie', movieSchema);
 
