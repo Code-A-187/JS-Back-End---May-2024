@@ -39,8 +39,11 @@ const movieSchema = new mongoose.Schema ({
             },
             message: props => `${props.value} is not a valid URL`
         },
-        cast: [{type: mongoose.Schema.Types.ObjectId, ref: 'Cast'}],
-    }
+    },
+    casts: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Cast',
+    }],
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
