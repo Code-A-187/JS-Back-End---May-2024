@@ -9,7 +9,7 @@ function parseError(err) {
             //Mongoose validation error
             const error = new Error('Input validation error');
             error.errors = Object.fromEntries(Object.values(err.errors).map(e => [e.path, e.message]));
-        
+            error.message = Object.values(error.errors).map(e => e.message).join('\n');
             return error;
         }
 
@@ -17,6 +17,7 @@ function parseError(err) {
         // Express-validator error array
         const error = new Error('Input validation error');
         error.errors =  Object.fromEntries(err.map(e => [e.path, e.msg]));
+        error.message = Object.values(error.errors).map(e => e.message).join('\n');
         return error;
     }
 

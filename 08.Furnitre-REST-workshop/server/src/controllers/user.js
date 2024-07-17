@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const { body, validationResult } = require('express-validator');
 
-
-const { login } = require("../services/userService");
+const { parseError } = require('../util')
+const { login, register } = require("../services/userService");
 const { createToken } = require("../services/jwtService");
 
 const userRouter =Router();
@@ -34,6 +34,11 @@ userRouter.post('/register',
     async (req, res) => {
 
     try {
+        const validation = validationResult(req);
+
+        if (validation.errors.length) {
+            throw new Error(validation.errors);
+        }
         const result = await register (req.body.email, req.body.password);
         const accessToken = createToken(result)
 
@@ -43,7 +48,8 @@ userRouter.post('/register',
             accessToken
         });
     } catch  (err) {
-        res.status(403).json({ code: 403, message:'Incorrect email or password'})
+        const parsed = parseError(err)
+        res.status(403).json({ code: 403, message: parsed.message});
     } 
 });
 
