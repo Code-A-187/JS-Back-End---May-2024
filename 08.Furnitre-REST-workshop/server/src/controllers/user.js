@@ -37,7 +37,7 @@ userRouter.post('/register',
         const validation = validationResult(req);
 
         if (validation.errors.length) {
-            throw new Error(validation.errors);
+            throw validation.errors;
         }
         const result = await register (req.body.email, req.body.password);
         const accessToken = createToken(result)
