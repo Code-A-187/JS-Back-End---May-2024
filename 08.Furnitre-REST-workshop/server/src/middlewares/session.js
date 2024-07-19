@@ -2,7 +2,7 @@ const { verifyToken } = require('../services/jwtService');
 
 function session () {
     return function (req, res, next) {
-        const token = req.cookies?.token;
+        const token = req.headers['x-authorization'];
 
         if (token) {
             try{
@@ -13,7 +13,9 @@ function session () {
                 };
                 res.locals.hasUser = true;
             } catch (err){
-                res.clearCookie('token');
+                res.status(401).json({ code: 403, message: 'Invalid or expired token' });
+                
+                return;
             }
         }
 

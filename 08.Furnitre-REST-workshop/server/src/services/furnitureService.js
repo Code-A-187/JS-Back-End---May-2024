@@ -1,4 +1,4 @@
-const { Data } = require('../models/Data')
+const { Data } = require('../models/Furniture')
 
 // TODO replace with real data service acording to exam description
 

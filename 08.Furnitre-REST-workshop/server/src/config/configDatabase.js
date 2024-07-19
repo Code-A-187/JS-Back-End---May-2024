@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 require('../models/User');
-require('../models/Data'); // TODO import real data model
+require('../models/Furniture'); // TODO import real data model
 
 // TODO import models
 
