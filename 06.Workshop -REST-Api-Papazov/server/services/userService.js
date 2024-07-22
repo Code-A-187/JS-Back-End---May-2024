@@ -27,7 +27,6 @@ exports.login = async (userData) => {
 
 }
 
-
 function generateAccessToken(user) {
 
     const accessToken = jwt.sign( {
