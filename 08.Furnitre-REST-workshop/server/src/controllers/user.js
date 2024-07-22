@@ -54,7 +54,7 @@ userRouter.post('/register',
 });
 
 userRouter.get('/logout', (req, res) => {
-    
+    res.status(204).end();
 });
 
 

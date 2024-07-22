@@ -4,8 +4,8 @@ async function getAll() {
     return Furniture.find().lean();
 }
 
-async function getByAuthorId(id) {
-    return Furniture.find({ author: id }).lean();
+async function getByOwnerId(id) {
+    return Furniture.find({ owner: id }).lean();
 }
 
 async function getById(id) {
@@ -13,7 +13,6 @@ async function getById(id) {
 }
 
 async function create(data, ownerId) {
-    // TODO extract properties from view model
     const record = new Furniture ({
         make: data.make,
         model: data.model,
@@ -42,13 +41,13 @@ async function update(id, data, userId) {
         throw new Error('Access denied');
     }
 
-    record.make = data.make,
-    record.model = data.model,
-    record.year = data.year,
-    record.description = data.description,
-    record.price = data.price,
-    record.img = data.img,
-    record.material = data.material,
+    record.make = data.make;
+    record.model = data.model;
+    record.year = data.year;
+    record.description = data.description;
+    record.price = data.price;
+    record.img = data.img;
+    record.material = data.material;
  
 
     await record.save();
@@ -73,7 +72,7 @@ async function deleteById(id, userId) {
 
 module.exports = {
     getAll,
-    getByAuthorId,
+    getByOwnerId,
     getById,
     create,
     update,
