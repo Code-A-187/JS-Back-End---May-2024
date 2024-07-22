@@ -18,4 +18,8 @@ router.post('/login', async (req, res) => {
     res.json(result);
 })
 
+router.get('/logout', async (req, res) => {
+    res.json({ ok: true });
+})
+
 module.exports = router;
