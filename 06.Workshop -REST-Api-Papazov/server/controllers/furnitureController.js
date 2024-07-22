@@ -5,11 +5,33 @@ const furnitureService = require('../services/furnitureService')
 
 router.get('/', async (req, res) => {
 
-    const furnitureData = req.body;
-
     const furnitures = await furnitureService.getAll();
 
     res.json(furnitures);
+    
+});
+
+router.get('/:id', async (req, res) => {
+
+    const furniture = await furnitureService.getOne(req.params.id);
+
+    res.json(furniture);
+    
+});
+
+router.put('/:id', async (req, res) => {
+    const furnitureData = req.body;
+    const furniture = await furnitureService.edit(req.params.id, furnitureData);
+
+    res.json(furniture);
+    
+});
+
+router.delete('/:id', async (req, res) => {
+    
+    await furnitureService.edit(req.params.id);
+
+    res.json({ ok: true });
     
 });
 
