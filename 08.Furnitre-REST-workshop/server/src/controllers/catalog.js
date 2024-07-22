@@ -33,7 +33,7 @@ catalogRouter.post('/', isUser(),
     body('model').trim().isLength({ min: 4 }).withMessage('Model must be atleast 4 characters long'),
     body('year').trim().isInt({ min: 1950, max: 2050 }).withMessage('Year must be between 1950 and 2050'),
     body('description').trim().isLength({ min: 10 }).withMessage('Description must be atleast 10 charachters long'),
-    body('price').trim().isFloat({ min: 0.01 }).withMessage(''),
+    body('price').trim().isFloat({ min: 0.01 }).withMessage('Price must be greater than 0'),
     body('img').trim().isURL({ require_tld: false, require_protocol: true }).withMessage('Please enter valid image URL'),
     body('material').trim(),
 
@@ -68,12 +68,12 @@ catalogRouter.get('/:id', async (req, res) => {
     res.json(record)
 });
 
-catalogRouter.put('/:id', isUser, 
+catalogRouter.put('/:id', isUser(), 
     body('make').trim().isLength({ min: 4 }).withMessage('Make must be atleast 4 characters long'),
     body('model').trim().isLength({ min: 4 }).withMessage('Model must be atleast 4 characters long'),
     body('year').trim().isInt({ min: 1950, max: 2050 }).withMessage('Year must be between 1950 and 2050'),
     body('description').trim().isLength({ min: 10 }).withMessage('Description must be atleast 10 charachters long'),
-    body('price').trim().isFloat({ min: 0.01 }).withMessage(''),
+    body('price').trim().isFloat({ min: 0.01 }).withMessage('Price must be greater than 0'),
     body('img').trim().isURL({ require_tld: false, require_protocol: true }).withMessage('Please enter valid image URL'),
     body('material').trim(),
     async (req, res) => {
