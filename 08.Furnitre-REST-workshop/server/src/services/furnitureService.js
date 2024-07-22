@@ -1,19 +1,27 @@
-const { Data } = require('../models/Furniture')
-
-// TODO replace with real data service acording to exam description
+const { Furniture } = require('../models/Furniture')
 
 async function getAll() {
-    return Data.find().lean();
+    return Furniture.find().lean();
+}
+
+async function getByAuthorId(id) {
+    return Furniture.find({ author: id }).lean();
 }
 
 async function getById(id) {
-    return Data.findById(id).lean();
+    return Furniture.findById(id).lean();
 }
 
 async function create(data, ownerId) {
     // TODO extract properties from view model
-    const record = new Data ({
-        prop: data.prop,
+    const record = new Furniture ({
+        make: data.make,
+        model: data.model,
+        year: data.year,
+        description: data.description,
+        price: data.price,
+        img: data.img,
+        material: data.material,
         owner: ownerId
     });
 
@@ -23,7 +31,7 @@ async function create(data, ownerId) {
 }
 
 async function update(id, data, userId) {
-    const record = await Data.findById(id);
+    const record = await Furniture.findById(id);
 
 
     if (! record) {
@@ -34,8 +42,14 @@ async function update(id, data, userId) {
         throw new Error('Access denied');
     }
 
-    // TODO replace with real properties
-    record.prop = data.prop;
+    record.make = data.make,
+    record.model = data.model,
+    record.year = data.year,
+    record.description = data.description,
+    record.price = data.price,
+    record.img = data.img,
+    record.material = data.material,
+ 
 
     await record.save();
 
@@ -43,7 +57,7 @@ async function update(id, data, userId) {
 }
 
 async function deleteById(id, userId) {
-    const record = await Data.findById(id);
+    const record = await Furniture.findById(id);
 
 
     if (! record) {
@@ -54,11 +68,12 @@ async function deleteById(id, userId) {
         throw new Error('Access denied');
     }
 
-    await Data.findByIdAndDelete(id);
+    await Furniture.findByIdAndDelete(id);
 }
 
 module.exports = {
     getAll,
+    getByAuthorId,
     getById,
     create,
     update,
