@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     const furnitureData = req.body;
-    const furniture = await furnitureService.edit(req.params.id, furnitureData);
+    const furniture = await furnitureService.update(req.params.id, furnitureData);
 
     res.json(furniture);
     
@@ -29,7 +29,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     
-    await furnitureService.edit(req.params.id);
+    await furnitureService.delete(req.params.id);
 
     res.json({ ok: true });
     
@@ -44,6 +44,5 @@ router.post('/', async (req, res) => {
     res.json(furniture); 
     
 });
-
 
 module.exports = router;
